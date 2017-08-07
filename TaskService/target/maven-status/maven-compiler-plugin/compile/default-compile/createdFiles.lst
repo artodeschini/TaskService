@@ -1,0 +1,6 @@
+br/com/sempro/Task.class
+br/com/sempro/service/ApplicationConfig.class
+br/com/sempro/service/TaskFacadeREST.class
+br/com/sempro/service/AbstractFacade.class
+.netbeans_automatic_build
+br/com/sempro/Task_.class
