@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var rootURL = "http://localhost:8080/TaskService/webresources/tasks";
+var rootURL = "http://localhost:8080/api/sssstasks";
 
 function getTasks() {
 
@@ -17,14 +17,13 @@ function getTasks() {
          },
 
          error: function (jqXHR, status) {
-             alert("deu zica");
+             alert("deu zica");s
          }
     });
 
 }
 // Register listeners
-('#btnTeste').click(function() {
-	//search($('#searchKey').val());
+('#btnTeste').click(function() {s
         getTasks();
 	return false;
 });

@@ -105,7 +105,7 @@
          */
         function TasksViewModel() {
        
-            $.ajax('http://localhost:8080/TaskService/webresources/tasks','GET').done(function(xml) {
+            $.ajax('http://localhost:8080/api/tasks','GET').done(function(xml) {
                
                 $(xml).find('task').each(function(){
                     var id = $(this).find('id').text();
@@ -164,34 +164,27 @@
             var titulo = $('#inputTask').val();
             var descricao = $('#inputDescription').val();
             
-            var data = '<task><status>0</status><titulo>' + titulo + '</titulo><descricao>' + descricao + '</descricao></task>';
-      
-        
-            //alert(data);
+            //var data = '<task><status>0</status><titulo>' + titulo + '</titulo><descricao>' + descricao + '</descricao></task>';
+            var data = `{status: 0, titulo: ${titulo}, descricao: ${descricao}}`;
             
             $.ajax({
-                url: 'http://localhost:8080/TaskService/webresources/tasks',
+                url: 'http://localhost:8080/api/tasks',
                 data, 
                 type: 'POST',
-                contentType: "application/xml;charset=UTF-8",
-                dataType: "xml",
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
                 //success : $('alertSucess'),
                 error : function (xhr, ajaxOptions, thrownError){  
                     alert(xhr.status);          
                     alert(thrownError);
                 } 
             });
-            
-            /*$.trigger("add-alerts", [ {
-                    "message": "This is a warning.",
-                    "priority": 'warning'
-                }
-            ]); */
-            
+
+
             $('#inputTask').val('');
             $('#inputDescription').val('');
             
-            window.location.href="http://localhost:8080/TaskService/lista.html";
+            window.location.href="http://localhost:8080/index.html";
             
         });
         
@@ -202,7 +195,7 @@
          * @returns {undefined}
          */
         function editar(id) {
-            var urlBase = 'http://localhost:8080/TaskService/webresources/tasks';
+            var urlBase = 'http://localhost:8080/apis/tasks';
             urlBase += '/'+ id;
             
             //alert(urlUpdate);'
@@ -245,7 +238,7 @@
         $('#btnUpdateModal').click(function() {
             //alert('encaminhar');
             
-            var urlBase = 'http://localhost:8080/TaskService/webresources/tasks';
+            var urlBase = 'http://localhost:8080/apis/tasks';
             
             var titulo = $('#inputTaskUpdate').val();
             var descricao = $('#inputDescriptionUpdate').val();
@@ -278,7 +271,7 @@
                 } 
             });
             
-            window.location.href="http://localhost:8080/TaskService/lista.html";
+            window.location.href="http://localhost:8080/index.html";
         });
         
         /**
@@ -288,7 +281,7 @@
          */
         function deletar(id) {
            //alert(id);
-           var urlBase = 'http://localhost:8080/TaskService/webresources/tasks';
+           var urlBase = 'http://localhost:8080/apis/tasks';
            urlBase += '/'+ id;
            
            $.ajax({
@@ -304,13 +297,13 @@
                 } 
             });
    
-           window.location.href="http://localhost:8080/TaskService/lista.html";  
+           window.location.href="http://localhost:8080/index.html";
         }
         
         function alterarStatus(id) {
             //alert(id);
             
-            var urlBase = 'http://localhost:8080/TaskService/webresources/tasks';
+            var urlBase = 'http://localhost:8080/api/tasks';
             urlBase += '/'+ id;
             
             var status = '';
@@ -355,15 +348,9 @@
                         } 
                     });
             
-                    window.location.href="http://localhost:8080/TaskService/lista.html";
-                    
+                    window.location.href="http://localhost:8080/index.html";
                 });
-       
             });
-            
-            //alert(data);
-            
-           
         }
         
     </script>
