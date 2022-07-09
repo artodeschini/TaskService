@@ -1,4 +1,12 @@
 # TaskService
-A Simple RestFull Sample JEE
+A Simple RestFull Sample Quarkus
 
-In this sample I use JPA with MySQL / Glass fish / Java8 / JAX-RS / Xml / jQuery / Bootstrap / HTML5
+## In this sample I use:
+
+* Java 11
+* Quarkus
+* JPA / Panache with Postgres
+* JSON / XML
+* jQuery
+* Bootstrap 5
+* HTML5

@@ -1,26 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.com.sempro.service;
+package org.todeschini.service;
 
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 /**
  *
  * @author Artur
  */
-public abstract class AbstractFacade<T> {
+@Default
+public class AbstractFacade<T> {
 
     private Class<T> entityClass;
+
+    @Inject
+    private EntityManager entityManager;
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
-    protected abstract EntityManager getEntityManager();
+    protected EntityManager getEntityManager() {
+        return entityManager;
+    }
 
     public void create(T entity) {
         getEntityManager().persist(entity);

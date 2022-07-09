@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.com.sempro.service;
+package org.todeschini.service;
 
-import br.com.sempro.Task;
+import org.todeschini.entity.Task;
+
 import java.util.List;
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -24,12 +17,10 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Artur
  */
-@Stateless
+
 @Path("/tasks")
 public class TaskFacadeREST extends AbstractFacade<Task> {
 
-    @PersistenceContext(unitName = "tasks-pu")
-    private EntityManager em;
 
     public TaskFacadeREST() {
         super(Task.class);
@@ -83,9 +74,4 @@ public class TaskFacadeREST extends AbstractFacade<Task> {
         return String.valueOf(super.count());
     }
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-    
 }
