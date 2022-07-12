@@ -32,7 +32,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/tasks",
+					"raw": "http://localhost:8080/api/tasks/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -40,7 +40,8 @@
 					"port": "8080",
 					"path": [
 						"api",
-						"tasks"
+						"tasks",
+						"1"
 					]
 				}
 			},
@@ -49,10 +50,10 @@
 		{
 			"name": "DeleteById",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/tasks",
+					"raw": "http://localhost:8080/api/tasks/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -60,7 +61,8 @@
 					"port": "8080",
 					"path": [
 						"api",
-						"tasks"
+						"tasks",
+						"1"
 					]
 				}
 			},
@@ -119,7 +121,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\": 1, \"status\":0,\"titulo\":\"Quarkus\",\"descricao\":\"Migrar para quarkus\"}\n"
+					"raw": "{\"id\": 1, \"status\":1,\"titulo\":\"Quarkus\",\"descricao\":\"Migrar para quarkus\"}\n"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/tasks/1",
