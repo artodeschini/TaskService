@@ -3,13 +3,10 @@ package org.todeschini.entity;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -34,15 +31,6 @@ public class Task extends PanacheEntity implements Serializable {
     @NotNull
     @Column(name = "status")
     private int status;
-    @Column(name = "dtCriacao")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dtCriacao;
-    @Column(name = "dtConclusao")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dtConclusao;
-    @Column(name = "dtUpdate")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dtUpdate;
 
     public Task() {
     }
@@ -53,6 +41,12 @@ public class Task extends PanacheEntity implements Serializable {
 
     public Task(Long id, String titulo, int status, String descricao) {
         this.id = id;
+        this.titulo = titulo;
+        this.status = status;
+        this.descricao = descricao;
+    }
+
+    public Task(String titulo, int status, String descricao) {
         this.titulo = titulo;
         this.status = status;
         this.descricao = descricao;
@@ -82,30 +76,6 @@ public class Task extends PanacheEntity implements Serializable {
         this.status = status;
     }
 
-    public Date getDtCriacao() {
-        return dtCriacao;
-    }
-
-    public void setDtCriacao(Date dtCriacao) {
-        this.dtCriacao = dtCriacao;
-    }
-
-    public Date getDtConclusao() {
-        return dtConclusao;
-    }
-
-    public void setDtConclusao(Date dtConclusao) {
-        this.dtConclusao = dtConclusao;
-    }
-
-    public Date getDtUpdate() {
-        return dtUpdate;
-    }
-
-    public void setDtUpdate(Date dtUpdate) {
-        this.dtUpdate = dtUpdate;
-    }
-
     public String getDescricao() {
         return descricao;
     }
@@ -132,10 +102,4 @@ public class Task extends PanacheEntity implements Serializable {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "br.com.sempro.Task[ id=" + id + " ]";
-    }
-
 }

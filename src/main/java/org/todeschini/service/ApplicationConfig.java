@@ -5,6 +5,8 @@
  */
 package org.todeschini.service;
 
+import org.todeschini.resource.TaskResource;
+
 import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -30,7 +32,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(org.todeschini.service.TaskFacadeREST.class);
+        resources.add(TaskResource.class);
     }
     
 }
