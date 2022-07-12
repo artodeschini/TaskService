@@ -42,7 +42,7 @@ function changeStatus(id) {
         console.log(response);
         response.json().then(task => {
 
-            if (new String(task.status) === '1') {
+            if (task.status == 1) {
                 task.status = 0;
             } else {
                 task.status = 1;
@@ -50,7 +50,7 @@ function changeStatus(id) {
 
             fetch(url, {
                 method: 'PUT',
-                body: task, // string or object
+                body: JSON.stringify(task), // string or object
                 headers: {
                     'Content-Type': 'application/json', 'Accept': 'application/json'
                 }

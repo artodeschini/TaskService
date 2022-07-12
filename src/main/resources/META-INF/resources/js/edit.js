@@ -65,8 +65,8 @@ function loadTask() {
             document.getElementById('titulo').value = task.titulo;
             document.getElementById('descricao').value = task.descricao;
 
-            if (new String(task.status) === '1') {
-                document.getElementById('status').checked = true;
+            if (task.status == 1) {
+                document.getElementById('status').checked;
             }
 
         }).catch(error => {
