@@ -12,13 +12,14 @@ A Simple RestFull Sample Quarkus
 * Bootstrap 5
 * HTML5
 
-## Build
+## to build
 
 ```bash
 mvn clean install
 ```
 
+## to run application
+
 ```bash
-mvn clean install
-java -jar target/tasks-2.0.0.jar
+java -jar target/quarkus-app/quarkus-run.jar
 ```
