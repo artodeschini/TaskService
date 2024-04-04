@@ -6,7 +6,7 @@ A Simple RestFull Sample Quarkus
 * Java 11
 * Maven 3.8.4
 * Quarkus
-* JPA / Panache with Postgres
+* JPA / Panache with h2 Databases
 * JSON
 * jQuery (only use to bootstrap)
 * Bootstrap 5
@@ -23,3 +23,4 @@ mvn clean install
 ```bash
 java -jar target/quarkus-app/quarkus-run.jar
 ```
+

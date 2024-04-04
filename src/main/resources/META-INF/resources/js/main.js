@@ -1,10 +1,10 @@
 const api = "/api/tasks";
 
 function createTextCell(newRow, index, value) {
-    let cell = newRow.insertCell(index);
+    const cell = newRow.insertCell(index);
 
-    let p = document.createElement('p');
-    let b = document.createElement('b');
+    const p = document.createElement('p');
+    const b = document.createElement('b');
     b.innerHTML = value;
     p.appendChild(b);
 
@@ -12,8 +12,8 @@ function createTextCell(newRow, index, value) {
 }
 
 function createCellStatus(newRow, index, isStatusConcluido) {
-    let cell = newRow.insertCell(index);
-    let s = document.createElement('span');
+    const cell = newRow.insertCell(index);
+    const s = document.createElement('span');
 
 
     if ( isStatusConcluido ) {
@@ -36,7 +36,7 @@ function loadTask(id) {
  * @type type
  */
 function changeStatus(id) {
-    let url = `${api}/${id}`;
+    const url = `${api}/${id}`;
 
     fetch(url).then(response => {
         console.log(response);
@@ -70,7 +70,7 @@ function changeStatus(id) {
 }
 
 function deleteTask(id) {
-    let url = `${api}/${id}`;
+    const url = `${api}/${id}`;
 
     fetch(url, {
         method: 'DELETE',
@@ -86,15 +86,18 @@ function deleteTask(id) {
 }
 
 function createButtonGrid(id, label) {
-    let button = document.createElement('button');
+    const button = document.createElement('button');
     button.innerHTML = label;
 
     //actions
     if (label === 'Editar') {
+        button.classList.add("btn btn-info margin-left")
         button.addEventListener('click', () => { loadTask(id) });
     } else if (label === 'Deletar') {
+        button.classList.add("btn btn-danger margin-left")
         button.addEventListener('click', () => { deleteTask(id) });
     } else if (label === 'Desmarcar Concluida' || label ===  'Marcar como Concluida') {
+        button.classList.add("btn btn-secondary margin-left")
         button.addEventListener('click', () => { changeStatus(id) });
     }
 
@@ -112,17 +115,17 @@ function checkStatusConcluido(status) {
 function findTasksAll() {
     //onload page
 
-    let rows = document.getElementById('rows');
+    const rows = document.getElementById('rows');
     let index = 1;
 
     fetch(api).then(response => {
         response.json().then(tasks => {
             tasks.forEach(t => {
                 // Insert a row at tde end of table
-                let newRow = rows.insertRow(index++);
+                const newRow = rows.insertRow(index++);
 
                 // status
-                let isStatusConcluido = checkStatusConcluido(t.status);
+                const isStatusConcluido = checkStatusConcluido(t.status);
 
                 // elemetros da grid
 
@@ -139,14 +142,14 @@ function findTasksAll() {
                 createTextCell(newRow, 3, t.descricao);
 
                 //botoes
-                let cellBotoes = newRow.insertCell(4);
+                const cellBotoes = newRow.insertCell(4);
 
                 // btn editar
-                let btnEdit = createButtonGrid(t.id, 'Editar');
+                const btnEdit = createButtonGrid(t.id, 'Editar');
                 cellBotoes.appendChild(btnEdit);
 
                 // btn deletar
-                let btnDel = createButtonGrid(t.id, 'Deletar');
+                const btnDel = createButtonGrid(t.id, 'Deletar');
                 cellBotoes.appendChild(btnDel);
 
                 let label = '';
@@ -157,7 +160,7 @@ function findTasksAll() {
                 }
 
                 // btn patch
-                let btnStatus = createButtonGrid(t.id, label);
+                const btnStatus = createButtonGrid(t.id, label);
                 cellBotoes.appendChild(btnStatus);
             });
         });

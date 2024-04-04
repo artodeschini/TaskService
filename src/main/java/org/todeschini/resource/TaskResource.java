@@ -1,5 +1,6 @@
 package org.todeschini.resource;
 
+import lombok.extern.slf4j.Slf4j;
 import org.todeschini.entity.Task;
 import org.todeschini.service.AbstractFacade;
 
@@ -20,6 +21,7 @@ import javax.ws.rs.core.MediaType;
  * @author Artur
  */
 @Path("/tasks")
+@Slf4j
 public class TaskResource extends AbstractFacade<Task> {
 
 
