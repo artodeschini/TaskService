@@ -1,7 +1,14 @@
 package org.todeschini.service;
 
+import io.quarkus.runtime.StartupEvent;
+
+import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.StaticHandler;
+//import jakarta.enterprise.event.Observes;
+
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;

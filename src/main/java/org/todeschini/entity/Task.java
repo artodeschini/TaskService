@@ -1,11 +1,10 @@
 package org.todeschini.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +19,9 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "task")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Task extends PanacheEntity implements Serializable {
 
     @Basic(optional = false)
@@ -34,8 +36,12 @@ public class Task extends PanacheEntity implements Serializable {
     @Column(name = "status")
     private int status;
 
-    public Task() {
-    }
+    @Column(name = "criada")
+    private LocalDate criada;
+
+    @Basic(optional = true)
+    @Column(name = "finalizada")
+    private LocalDate finalizada;
 
     public Task(Long id) {
         this.id = id;

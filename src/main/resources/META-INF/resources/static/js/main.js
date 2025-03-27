@@ -85,19 +85,19 @@ function deleteTask(id) {
     });
 }
 
-function createButtonGrid(id, label) {
+function createButtonTable(id, label) {
     const button = document.createElement('button');
     button.innerHTML = label;
 
     //actions
     if (label === 'Editar') {
-        button.classList.add("btn btn-info margin-left")
+        button.className = "btn btn-info";
         button.addEventListener('click', () => { loadTask(id) });
     } else if (label === 'Deletar') {
-        button.classList.add("btn btn-danger margin-left")
+        button.className "btn btn-danger";
         button.addEventListener('click', () => { deleteTask(id) });
     } else if (label === 'Desmarcar Concluida' || label ===  'Marcar como Concluida') {
-        button.classList.add("btn btn-secondary margin-left")
+        button.className = "btn btn-secondary";
         button.addEventListener('click', () => { changeStatus(id) });
     }
 
@@ -141,15 +141,19 @@ function findTasksAll() {
                 // descricao
                 createTextCell(newRow, 3, t.descricao);
 
+                createTextCell(newRow, 4, t.criadax);
+
+                createTextCell(newRow, 5, t.finalizada);
+
                 //botoes
-                const cellBotoes = newRow.insertCell(4);
+                const cellBotoes = newRow.insertCell(6);
 
                 // btn editar
-                const btnEdit = createButtonGrid(t.id, 'Editar');
+                const btnEdit = createButtonTable(t.id, 'Editar');
                 cellBotoes.appendChild(btnEdit);
 
                 // btn deletar
-                const btnDel = createButtonGrid(t.id, 'Deletar');
+                const btnDel = createButtonTable(t.id, 'Deletar');
                 cellBotoes.appendChild(btnDel);
 
                 let label = '';
@@ -160,7 +164,7 @@ function findTasksAll() {
                 }
 
                 // btn patch
-                const btnStatus = createButtonGrid(t.id, label);
+                const btnStatus = createButtonTable(t.id, label);
                 cellBotoes.appendChild(btnStatus);
             });
         });

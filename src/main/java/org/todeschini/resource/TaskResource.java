@@ -1,10 +1,13 @@
 package org.todeschini.resource;
 
+import io.quarkus.runtime.StartupEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.todeschini.entity.Task;
 import org.todeschini.service.AbstractFacade;
 
+import java.time.LocalDate;
 import java.util.List;
+import javax.enterprise.event.Observes;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -16,17 +19,27 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.StaticHandler;
+//import jakarta.enterprise.event.Observes;
+
 /**
  *
  * @author Artur
  */
 @Path("/tasks")
 @Slf4j
-public class TaskResource extends AbstractFacade<Task> {
 
+public class TaskResource extends AbstractFacade<Task> {
 
     public TaskResource() {
         super(Task.class);
+        var t = Task.builder()
+                .criada(LocalDate.now())
+                .status(0)
+                .descricao("d1")
+                .titulo("t1").build();
+        super.create(t);
     }
 
     @POST
@@ -35,6 +48,7 @@ public class TaskResource extends AbstractFacade<Task> {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public void create(Task entity) {
+        entity.setCriada(LocalDate.now());
         super.create(entity);
     }
 
@@ -44,7 +58,19 @@ public class TaskResource extends AbstractFacade<Task> {
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
     public void edit(@PathParam("id") Long id, Task entity) {
-        super.edit(entity);
+        var original = super.find(id);
+
+        if (entity.getStatus() == 1 && original.getStatus() == 0) {
+            original.setFinalizada(LocalDate.now());
+        } else {
+            original.setFinalizada(null);
+        }
+
+        original.setDescricao(entity.getDescricao());
+        original.setTitulo(entity.getTitulo());
+        original.setStatus(entity.getStatus());
+
+        super.edit(original);
     }
 
     @DELETE
